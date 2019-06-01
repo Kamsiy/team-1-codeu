@@ -42,27 +42,3 @@ function addLoginOrLogoutLinkToNavigation() {
         }
       });
 }
-
-/**
- * Creates an li element.
- * @param {Element} childElement
- * @return {Element} li element
- */
-function createListItem(childElement) {
-  const listItemElement = document.createElement('li');
-  listItemElement.appendChild(childElement);
-  return listItemElement;
-}
-
-/**
- * Creates an anchor element.
- * @param {string} url
- * @param {string} text
- * @return {Element} Anchor element
- */
-function createLink(url, text) {
-  const linkElement = document.createElement('a');
-  linkElement.appendChild(document.createTextNode(text));
-  linkElement.href = url;
-  return linkElement;
-}
