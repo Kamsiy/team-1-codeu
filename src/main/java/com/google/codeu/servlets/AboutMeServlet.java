@@ -1,4 +1,6 @@
 package com.google.codeu.servlets;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
