@@ -71,6 +71,13 @@ function fetchMessages() {
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
   setPageTitle();
+
+  const config = {
+        removePlugins: [ 'Heading', 'Link' ],
+        toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote' ]
+    } 
+  ClassicEditor.create(document.getElementById('message-input'), config );
+
   showMessageFormIfViewingSelf();
   fetchMessages();
   fetchAboutMe();
