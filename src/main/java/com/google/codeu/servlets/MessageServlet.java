@@ -21,6 +21,12 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Message;
 import com.google.gson.Gson;
+
+import com.google.cloud.language.v1.Document;
+import com.google.cloud.language.v1.Document.Type;
+import com.google.cloud.language.v1.LanguageServiceClient;
+import com.google.cloud.language.v1.Sentiment;
+
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
@@ -86,5 +92,21 @@ public class MessageServlet extends HttpServlet {
     datastore.storeMessage(message);
 
     response.sendRedirect("/user-page.html?user=" + user);
+    
+
+    // add sentiment analysis logic
+    String analyze_message = request.getParameter("text");
+
+    Document doc = Document.newBuilder()
+        .setContent(analyze_message).setType(Document.Type.PLAIN_TEXT).build();
+    LanguageServiceClient languageService = LanguageServiceClient.create();
+    Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
+    float score = sentiment.getScore();
+    languageService.close();
+    response.setContentType("text/html;");
+    response.getOutputStream().println("<h1>Sentiment Analysis</h1>");
+    response.getOutputStream().println("<p>You entered: " + message + "</p>");
+    response.getOutputStream().println("<p>Sentiment analysis score: " + score + "</p>");
+    response.getOutputStream().println("<p><a href=\"/\">Back</a></p>");
   }
 }
