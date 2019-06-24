@@ -42,6 +42,7 @@
     </script>
   </head>
   <body onload="buildUI()">
+    <%@include file="navigation.jsp" %>
     <div id="content">
       <h1>Community Page</h1>
       <p>Here is a list of every user who has posted a message:</p>

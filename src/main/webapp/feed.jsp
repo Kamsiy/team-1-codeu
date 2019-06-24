@@ -33,6 +33,7 @@
   <script src="/js/ui-builder.js"></script>
 </head>
 <body onload="buildUI()">
+<%@include file="navigation.jsp" %>
 <div id="content">
   <h1>Message Feed</h1>
   <hr/>

@@ -26,12 +26,7 @@ limitations under the License.
     <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
   </head>
   <body onload="buildUI();">
-    <nav>
-      <ul id="navigation">
-        <li><a href="/">Home</a></li>
-        <li><a href="/aboutus.html">About Our Team</a></li>
-      </ul>
-    </nav>
+    <%@include file="navigation.jsp" %>
     <h1 id="page-title">User Page</h1>
 
     <form id="message-form" action="/messages" method="POST" class="hidden">

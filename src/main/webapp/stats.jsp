@@ -32,10 +32,11 @@
   </script>
 </head>
 <body onload="buildUI()">
-<div id="content">
-  <h1>Site Statistics</h1>
-  <hr/>
-  <div id="stats-container">Loading...</div>
-</div>
+  <%@include file="navigation.jsp" %>
+  <div id="content">
+    <h1>Site Statistics</h1>
+    <hr/>
+    <div id="stats-container">Loading...</div>
+  </div>
 </body>
 </html>
