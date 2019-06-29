@@ -2,19 +2,19 @@
 /* Prevent the page from becoming too wide. */
 body {
   margin: 0;
-  background-image: url("trianglify.png");
+  background-image: url("/css/trianglify.png");
   background-attachment: fixed;
 }
 
 h1 {
 	text-align: center;
-	color: #FCD581; /* mellow yellow*/
+	color: #D52941;
 	padding-top: 100px;
 	font-size: 24pt;
 }
 
 p {
-	color: #FCD581; /*mellow yellow*/
+	color: #D52941;
 	font-size: 18pt;
 	padding-left: 100px;
 }

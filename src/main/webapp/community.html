@@ -51,6 +51,8 @@
                   } else {
                     navigationElement.appendChild(
                         createListItem(createLink('/login', 'Your Page')));
+                    navigationElement.appendChild(
+                        createListItem(createLink('/logout', 'Logout')));
                   }
                 });
           fetchUserList();
@@ -62,6 +64,7 @@
       <ul id="navigation">
         <li><a href="/">Home</a></li>
         <li><a href="/aboutus.html">About Our Team</a></li>
+        <li><a href="/community.html">Community Page</a></li>
       </ul>
     </nav>
 
