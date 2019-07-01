@@ -42,14 +42,8 @@ limitations under the License.
       }
     </script>
   </head>
-  <body onload="addLoginOrLogoutLinkToNavigation();">
-    <nav>
-      <ul id="navigation">
-        <li><a href="/">Home</a></li>
-        <li><a href="/aboutus.html">About Our Team</a></li>
-        <li><a href="/community.html">Community Page</a></li>
-      </ul>
-    </nav>
+  <body>
+    <%@include file="/WEB-INF/navigation.jsp" %>
     <h1>About Our Team</h1>
     <h2>Eleanor</h2>
     <ul>
