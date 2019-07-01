@@ -32,7 +32,7 @@
   </script>
 </head>
 <body onload="buildUI()">
-  <%@include file="navigation.jsp" %>
+  <%@include file="/WEB-INF/navigation.jsp" %>
   <div id="content">
     <h1>Site Statistics</h1>
     <hr/>

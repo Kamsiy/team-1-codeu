@@ -19,7 +19,7 @@ limitations under the License.
     <link rel="stylesheet" href="/css/main.css">
   </head>
   <body>
-    <%@include file="navigation.jsp" %>
+    <%@include file="/WEB-INF/navigation.jsp" %>
     <h1>About Our Team</h1>
     <h2>Eleanor</h2>
     <ul>
