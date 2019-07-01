@@ -3,6 +3,7 @@
   <head>
     <title>Community Page</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/ui-builder.js"></script>
 
     <script>
 
@@ -37,11 +38,36 @@
 
       /** Fetches data and populates the UI of the page. */
       function buildUI(){
-       fetchUserList();
+
+            const navigationElement = document.getElementById('navigation');
+            fetch('/login-status')
+                .then((loginStatus) => {
+                  if (loginStatus.isLoggedIn) {
+                    navigationElement.appendChild(createListItem(createLink(
+                        '/user-page.html?user=' + loginStatus.username, 'Your Page')));
+
+                    navigationElement.appendChild(
+                        createListItem(createLink('/logout', 'Logout')));
+                  } else {
+                    navigationElement.appendChild(
+                        createListItem(createLink('/login', 'Your Page')));
+                    navigationElement.appendChild(
+                        createListItem(createLink('/logout', 'Logout')));
+                  }
+                });
+          fetchUserList();
       }
     </script>
   </head>
   <body onload="buildUI()">
+    <nav>
+      <ul id="navigation">
+        <li><a href="/">Home</a></li>
+        <li><a href="/aboutus.html">About Our Team</a></li>
+        <li><a href="/community.html">Community Page</a></li>
+      </ul>
+    </nav>
+
     <div id="content">
       <h1>Community Page</h1>
       <p>Here is a list of every user who has posted a message:</p>
