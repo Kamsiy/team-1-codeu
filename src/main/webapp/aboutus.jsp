@@ -17,6 +17,30 @@ limitations under the License.
     <meta charset="UTF-8">
     <title>About Us</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/ui-builder.js"></script>
+
+    <script>
+          /** Fetches data and populates the UI of the page. */
+      function addLoginOrLogoutLinkToNavigation(){
+
+            const navigationElement = document.getElementById('navigation');
+            fetch('/login-status')
+                .then((loginStatus) => {
+                  if (loginStatus.isLoggedIn) {
+                    navigationElement.appendChild(createListItem(createLink(
+                        '/user-page.html?user=' + loginStatus.username, 'Your Page')));
+
+                    navigationElement.appendChild(
+                        createListItem(createLink('/logout', 'Logout')));
+                  } else {
+                    navigationElement.appendChild(
+                        createListItem(createLink('/login', 'Your Page')));
+                    navigationElement.appendChild(
+                        createListItem(createLink('/logout', 'Logout')));
+                  }
+                });
+      }
+    </script>
   </head>
   <body>
     <%@include file="/WEB-INF/navigation.jsp" %>

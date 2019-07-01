@@ -1,19 +1,3 @@
-<!--
-Copyright 2019 Google Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,9 +5,35 @@ limitations under the License.
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/user-page.css">
+    <script src="/js/navigation-loader.js"></script>
     <script src="/js/user-page-loader.js"></script>
     <script src="/js/ui-builder.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
+    <script>
+          /** Fetches data and populates the UI of the page. */
+      function addLoginOrLogoutLinkToNavigation(){
+
+            const navigationElement = document.getElementById('navigation');
+            fetch('/login-status')
+                .then((loginStatus) => {
+                  if (loginStatus.isLoggedIn) {
+                    navigationElement.appendChild(createListItem(createLink(
+                        '/user-page.html?user=' + loginStatus.username, 'Your Page')));
+
+                    navigationElement.appendChild(
+                        createListItem(createLink('/logout', 'Logout')));
+                  } else {
+                    navigationElement.appendChild(
+                        createListItem(createLink('/login', 'Your Page')));
+                    navigationElement.appendChild(
+                        createListItem(createLink('/logout', 'Logout')));
+                  }
+                });
+                buildUI();
+
+
+      }
+    </script>
   </head>
   <body onload="buildUI();">
     <%@include file="/WEB-INF/navigation.jsp" %>
@@ -34,7 +44,7 @@ limitations under the License.
       <br/>
       <textarea name="text" id="message-input"></textarea>
       <br/>
-	 <input type="submit" value="Submit">
+   <input type="submit" value="Submit">
     </form>
     <hr/>
 
@@ -42,26 +52,22 @@ limitations under the License.
 
     <div id="about-me-container">Loading...</div>
   <div id="about-me-form" class="hidden">
-  <form action="/about" method="POST">
-    <textarea name="about-me" placeholder="about me" rows=4 required></textarea>
-    <br/>
-    <input type="submit" value="Submit">
-  </form>
-  </div>	
+  </div>  
   
   <script>
      function fetchAboutMe(){
-	const url = '/about?user=' + parameterUsername;
-	fetch(url).then((response) => {
-		return response.text();
-	}).then((aboutMe) => {
-	   const aboutMeContainer = document.getElementById('about-me-container');
-	   if(aboutMe == ''){
-		aboutMe = 'This user has not entered any information yet.';
-	   }
+  const url = '/about?user=' + parameterUsername;
+  fetch(url).then((response) => {
+    return response.text();
+  }).then((aboutMe) => {
+     const aboutMeContainer = document.getElementById('about-me-container');
+     if(aboutMe == ''){
+    aboutMe = 'This user has not entered any information yet.';
+     }
            aboutMeContainer.innerHTML = aboutMe;
-	});
+  });
       }
+
   </script>
 
   </body>
