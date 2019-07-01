@@ -47,13 +47,13 @@ public class AboutMeServlet extends HttpServlet {
       throws IOException {
     UserService userService = UserServiceFactory.getUserService();
     if (!userService.isUserLoggedIn()) {
-      response.sendRedirect("/index.html");
+      response.sendRedirect("/index.jsp");
       return;
     }
     String userEmail = userService.getCurrentUser().getEmail();
     String aboutMe = Jsoup.clean(request.getParameter("about-me"), Whitelist.none());
     User user = new User(userEmail, aboutMe);
     datastore.storeUser(user);
-    response.sendRedirect("/user-page.html?user=" + userEmail);
+    response.sendRedirect("/user-page.jsp?user=" + userEmail);
   }
 }

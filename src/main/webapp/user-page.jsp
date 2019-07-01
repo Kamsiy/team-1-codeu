@@ -35,14 +35,8 @@
       }
     </script>
   </head>
-  <body onload="addLoginOrLogoutLinkToNavigation();">
-    <nav>
-      <ul id="navigation">
-        <li><a href="/">Home</a></li>
-        <li><a href="/aboutus.html">About Our Team</a></li>
-        <li><a href="/community.html">Community Page</a></li>
-      </ul>
-    </nav>
+  <body onload="buildUI();">
+    <%@include file="/WEB-INF/navigation.jsp" %>
     <h1 id="page-title">User Page</h1>
 
     <form id="message-form" action="/messages" method="POST" class="hidden">
