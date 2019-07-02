@@ -20,9 +20,9 @@ limitations under the License.
     <script src="/js/ui-builder.js"></script>
 
     <script>
-          /** Fetches data and populates the UI of the page. */
+	    
+      /** Fetches data and populates the UI of the page. */
       function addLoginOrLogoutLinkToNavigation(){
-
             const navigationElement = document.getElementById('navigation');
             fetch('/login-status')
                 .then((loginStatus) => {
@@ -45,9 +45,9 @@ limitations under the License.
   <title>Team 1's Location</title>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTkxwf49JuT_CpGMbV4OHYMTQjp8BT0nE"></script>
   <script>
-    let map;
+    let map;	  
     /* Editable marker that displays when a user clicks in the map. */
-    let editMarker;
+    let editMarker;	  
     function createMap(){
       map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 38.5949, lng: -94.8923},
@@ -63,6 +63,7 @@ limitations under the License.
       addLandmark(map, 42.026411, -93.643472, 'Kamsi', 'Kamsi is in Iowa');
 	  addLandmark(map, 37.422200, -122.083682, 'Kevin', 'Kevin is working in Mountain View')
     }
+	  
     /** Fetches markers from the backend and adds them to the map. */
     function fetchMarkers(){
       fetch('/markers').then((response) => {
@@ -73,7 +74,8 @@ limitations under the License.
         });
       });
     }
-	  /** Adds a marker that shows an info window when clicked. */ 
+    
+    /** Adds a marker that shows an info window when clicked. */ 
     function addLandmark(map, lat, lng, title, description){ 
       const marker = new google.maps.Marker({ 
         position: {lat: lat, lng: lng}, 
@@ -87,6 +89,7 @@ limitations under the License.
         infoWindow.open(map, marker); 
       }); 
     }
+	  
     /** Creates a marker that shows a read-only info window when clicked. */
     function createMarkerForDisplay(lat, lng, content){
       const marker = new google.maps.Marker({
@@ -100,6 +103,7 @@ limitations under the License.
         infoWindow.open(map, marker);
       });
     }
+	  
     /** Sends a marker to the backend for saving. */
     function postMarker(lat, lng, content){
       const params = new URLSearchParams();
@@ -111,6 +115,7 @@ limitations under the License.
         body: params
       });
     }
+	  
     /** Creates a marker that shows a textbox the user can edit. */
     function createMarkerForEdit(lat, lng){
       // If we're already showing an editable marker, then remove it.
@@ -130,6 +135,7 @@ limitations under the License.
       });
       infoWindow.open(map, editMarker);
     }
+	  
     /** Builds and returns HTML elements that show an editable textbox and a submit button. */
     function buildInfoWindowInput(lat, lng){
       const textBox = document.createElement('textarea');
@@ -157,7 +163,7 @@ limitations under the License.
   <body onload="createMap();">
   <h1>Team 1 Map</h1>
   <div id="map"></div>
-  <p>Find out where Team 1 is, or add your own personal marker to the map!</p>
+  <p>Find out where Team 1 is, or click on the map and enter your location to save your hometown!</p>
     <%@include file="/WEB-INF/navigation.jsp" %>
     <h1>About Our Team</h1>
     <h2>Eleanor</h2>
