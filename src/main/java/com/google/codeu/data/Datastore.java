@@ -148,4 +148,20 @@ public class Datastore {
     PreparedQuery results = datastore.prepare(query);
     return results.countEntities(FetchOptions.Builder.withLimit(1000));
   }
+  
+  /* Returns all laptops */
+  public List<Laptop> getAllLaptops(){
+	 List<Laptop> laptops = new ArrayList<>();
+	 laptops.add(new Laptop("Dell","Black","Windows",15,800.00));
+	 laptops.add(new Laptop("Thinkpad","Black","Windows",13,1200.00));
+	 laptops.add(new Laptop("Dell","Grey","Windows",15,800.00));
+	 laptops.add(new Laptop("Dell","Black","Linux",15,800.00));
+	 laptops.add(new Laptop("Thinkpad","Black","Windows",15,1699.00));
+	 laptops.add(new Laptop("Macbook Pro","Black","Mac",13,1599.00));
+	 laptops.add(new Laptop("MacBook Pro","Black","Mac",15,1900.00));
+	 laptops.add(new Laptop("Macbook Pro","Grey","Mac",13,1599.00));
+	 laptops.add(new Laptop("MacBook Pro","Grey","Mac",15,1900.00));
+
+	 return laptops;
+  }
 }
