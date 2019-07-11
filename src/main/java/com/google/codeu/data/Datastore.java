@@ -25,6 +25,7 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -33,9 +34,21 @@ import java.util.UUID;
 public class Datastore {
 
   private DatastoreService datastore;
+  private List<Laptop> laptopList; 
 
+  //in future, change to generic type to go more than laptops 
   public Datastore() {
     datastore = DatastoreServiceFactory.getDatastoreService();
+    laptopList= new ArrayList<>();
+	 laptopList.add(new Laptop("Dell","Black","Windows",15,800.00));
+	 laptopList.add(new Laptop("Thinkpad","Black","Windows",13,1200.00));
+	 laptopList.add(new Laptop("Dell","Grey","Windows",15,800.00));
+	 laptopList.add(new Laptop("Dell","Black","Linux",15,800.00));
+	 laptopList.add(new Laptop("Thinkpad","Black","Windows",15,1699.00));
+	 laptopList.add(new Laptop("Macbook Pro","Black","Mac",13,1599.00));
+	 laptopList.add(new Laptop("MacBook Pro","Black","Mac",15,1900.00));
+	 laptopList.add(new Laptop("Macbook Pro","Grey","Mac",13,1599.00));
+	 laptopList.add(new Laptop("MacBook Pro","Grey","Mac",15,1900.00));
   }
 
   /** Stores the Message in Datastore. */
@@ -149,19 +162,116 @@ public class Datastore {
     return results.countEntities(FetchOptions.Builder.withLimit(1000));
   }
   
-  /* Returns all laptops */
-  public List<Laptop> getAllLaptops(){
-	 List<Laptop> laptops = new ArrayList<>();
-	 laptops.add(new Laptop("Dell","Black","Windows",15,800.00));
-	 laptops.add(new Laptop("Thinkpad","Black","Windows",13,1200.00));
-	 laptops.add(new Laptop("Dell","Grey","Windows",15,800.00));
-	 laptops.add(new Laptop("Dell","Black","Linux",15,800.00));
-	 laptops.add(new Laptop("Thinkpad","Black","Windows",15,1699.00));
-	 laptops.add(new Laptop("Macbook Pro","Black","Mac",13,1599.00));
-	 laptops.add(new Laptop("MacBook Pro","Black","Mac",15,1900.00));
-	 laptops.add(new Laptop("Macbook Pro","Grey","Mac",13,1599.00));
-	 laptops.add(new Laptop("MacBook Pro","Grey","Mac",15,1900.00));
-
-	 return laptops;
+  /**
+   * @return list of all Laptops
+   */
+  public List<Laptop> getAlllaptopList(){
+	 return laptopList;
   }
-}
+  
+  /** Adds a laptop to the LaptopList
+   * @param Laptop to add to the list 
+   */
+  public void addLaptop(Laptop newLaptop) {
+	  laptopList.add(newLaptop);
+  }
+  
+  /**Returns a laptop list with laptops of a certain brand*/
+  public List<Laptop> searchBrand(String brand){
+	  //list of laptops that meet the brand requirements 
+	  List<Laptop> brandreturn=new ArrayList<>();
+	  Iterator<Laptop> it= laptopList.iterator(); 
+	  while(it.hasNext()) {
+		  if(it.next().getBrand()==brand.toLowerCase())
+			  brandreturn.add(it.next());
+	  }
+	  
+	  return brandreturn; 
+  }
+  
+  /**Returns a laptop list with laptops of a certain OS*/
+  public List<Laptop> searchOs(String os){
+	  //list of laptops that meet the brand requirements 
+	  List<Laptop> osreturn=new ArrayList<>();
+	  Iterator<Laptop> it= laptopList.iterator(); 	  
+	  while(it.hasNext()) {
+		  if(it.next().getOS()==os.toLowerCase())
+			  osreturn.add(it.next());
+	  }
+	  
+	  return osreturn; 
+  }
+  
+  /**Returns a laptop list with laptops of a certain color*/
+  public List<Laptop> searchColor(String color){
+	  //list of laptops that meet the brand requirements 
+	  List<Laptop> colorreturn=new ArrayList<>();
+	  Iterator<Laptop> it= laptopList.iterator(); 
+	  while(it.hasNext()) {
+		  if(it.next().getColor()==color.toLowerCase())
+			  colorreturn.add(it.next());
+	  }
+	  
+	  return colorreturn; 
+  }
+  
+  /**Returns a laptop list with laptops of a certain OS*/
+  public List<Laptop> searchOs(String os){
+	  //list of laptops that meet the brand requirements 
+	  List<Laptop> osreturn=new ArrayList<>();
+	  Iterator<Laptop> it= laptopList.iterator();  
+	  while(it.hasNext()) {
+		  if(it.next().getOS()==os.toLowerCase())
+			  osreturn.add(it.next());
+	  }
+	  
+	  return osreturn; 
+  }
+
+  /**Returns all laptops above that size, inclusive*/ 
+  public List<Laptop> searchSizeAbove(int size){
+	  List<Laptop> sizeAboveReturn=new ArrayList<>();
+	  Iterator<Laptop> it=laptopList.iterator();
+	  while(it.hasNext()) {
+		  if(it.next().getSize()>=size)
+			  sizeAboveReturn.add(it.next());
+	  }
+	  return sizeAboveReturn;  
+  }
+  
+  /**Returns all laptops below that size, inclusive*/ 
+  public List<Laptop> searchSizeBelow(int size){
+	  List<Laptop> sizeBelowReturn=new ArrayList<>();
+	  Iterator<Laptop> it=laptopList.iterator();
+	  while(it.hasNext()) {
+		  if(it.next().getSize()<=size)
+			  sizeBelowReturn.add(it.next());
+	  }
+	  return sizeBelowReturn;	  
+  }
+  
+  /**Returns all laptops above the price limit, inclusive*/ 
+  public List<Laptop> searchPriceAbove(double price){
+	  List<Laptop> priceAboveReturn=new ArrayList<>();
+	  Iterator<Laptop> it=laptopList.iterator();
+	  while(it.hasNext()) {
+		  if(it.next().getPrice()>=price)
+			  priceAboveReturn.add(it.next());
+	  }
+	  return priceAboveReturn;	  
+  }
+  
+  /**Returns all laptops below the price limit, inclusive*/ 
+  public List<Laptop> searchPriceBelow(double price){
+	  List<Laptop> priceBelowReturn=new ArrayList<>();
+	  Iterator<Laptop> it=laptopList.iterator();
+	  while(it.hasNext()) {
+		  if(it.next().getPrice()<=price)
+			  priceBelowReturn.add(it.next());
+	  }
+	  return priceBelowReturn;	  
+  }
+  
+  
+  }
+  

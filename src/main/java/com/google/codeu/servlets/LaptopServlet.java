@@ -29,11 +29,13 @@ public class LaptopServlet extends HttpServlet{
 	  public void doGet(HttpServletRequest request, HttpServletResponse response)
 	      throws IOException {
 
-	    List<Laptop> laptops = datastore.getAllLaptops();
+	    List<Laptop> laptops = datastore.getAlllaptopList();
 	    Gson gson = new Gson();
 	    String json = gson.toJson(laptops);
 
 	    response.setContentType("application/json");
 	    response.getOutputStream().println(json);
 	  }
+	  
+	
 }
