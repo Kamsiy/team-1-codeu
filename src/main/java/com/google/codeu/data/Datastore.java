@@ -161,11 +161,67 @@ public class Datastore {
     return results.countEntities(FetchOptions.Builder.withLimit(1000));
   }
   
+  /* Returns all laptops */
+  public List<Laptop> getAllLaptops(){
+	Query query = new Query("Laptops")
+		            .addSort("price", SortDirection.ASCENDING);
+	PreparedQuery results = datastore.prepare(query);
+
+	return convertLaptopResults(results);	 
+	
+  }
+  
+
   /**
-   * @return list of all Laptops
+   * Converts the PreparedResults containing laptop entities to a List of laptop instances.
    */
-  public List<Laptop> getAlllaptopList(){
-	 return laptopList;
+  private List<Laptop> convertLaptopResults(PreparedQuery results){
+
+    List<Laptop> laptops = new ArrayList<>();
+
+    for (Entity entity : results.asIterable()) {
+      try {
+        String brand = (String) entity.getProperty("brand");
+        String color = (String) entity.getProperty("color");
+        String os = (String) entity.getProperty("os");
+        int size = (int)entity.getProperty("size");
+        double price = (double) entity.getProperty("price");
+
+        Laptop laptop = new Laptop(brand, color, os, size, price);
+        laptops.add(laptop);
+      } catch (Exception e) {
+        System.err.println("Error reading laptop data.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+    return laptops;
+  }
+  
+  /* Stores the laptop in Datastore. */
+  public void storeLaptop(Laptop laptop) {
+   Entity laptopEntity = new Entity("Laptop", laptop.getId().toString());
+   laptopEntity.setProperty("brand", laptop.getBrand());
+   laptopEntity.setProperty("color", laptop.getColor());
+   laptopEntity.setProperty("os",laptop.getOS());
+   laptopEntity.setProperty("size", laptop.getSize());
+   laptopEntity.setProperty("price", laptop.getPrice());
+   datastore.put(laptopEntity);
+  }  
+  
+  /* Add hardcoded data to datastore */
+  public void addLaptopData()
+  {
+	  storeLaptop(new Laptop("Dell","Black","Windows",15,800.00));
+	  storeLaptop(new Laptop("Thinkpad","Black","Windows",13,1200.00));
+	  storeLaptop(new Laptop("Dell","Grey","Windows",15,800.00));
+	  storeLaptop(new Laptop("Dell","Black","Linux",15,800.00));
+	  storeLaptop(new Laptop("Thinkpad","Black","Windows",15,1699.00));
+	  storeLaptop(new Laptop("Macbook Pro","Black","Mac",13,1599.00));
+	  storeLaptop(new Laptop("MacBook Pro","Black","Mac",15,1900.00));
+	  storeLaptop(new Laptop("Macbook Pro","Grey","Mac",13,1599.00));
+	  storeLaptop(new Laptop("Dell","Grey","Windows",15,800.00));
+	  storeLaptop(new Laptop("MacBook Pro","Grey","Mac",15,1900.00));
   }
   
   /** Adds a laptop to the LaptopList
@@ -247,5 +303,4 @@ public class Datastore {
   }
   
   
-  }
-  
+}
