@@ -74,4 +74,5 @@ public class LaptopServlet extends HttpServlet{
 		  }
 		  return resultList;
 	  }
+
 }

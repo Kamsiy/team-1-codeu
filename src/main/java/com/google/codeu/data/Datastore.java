@@ -33,9 +33,21 @@ import java.util.UUID;
 public class Datastore {
 
   private DatastoreService datastore;
+  private List<Laptop> laptopList; 
 
+  //in future, change to generic type to go more than laptops 
   public Datastore() {
     datastore = DatastoreServiceFactory.getDatastoreService();
+    laptopList= new ArrayList<>();
+	laptopList.add(new Laptop("Dell","Black","Windows",15,800.00));
+	laptopList.add(new Laptop("Thinkpad","Black","Windows",13,1200.00));
+	laptopList.add(new Laptop("Dell","Grey","Windows",15,800.00));
+	laptopList.add(new Laptop("Dell","Black","Linux",15,800.00));
+	laptopList.add(new Laptop("Thinkpad","Black","Windows",15,1699.00));
+	laptopList.add(new Laptop("Macbook Pro","Black","Mac",13,1599.00));
+	laptopList.add(new Laptop("MacBook Pro","Black","Mac",15,1900.00));
+	laptopList.add(new Laptop("Macbook Pro","Grey","Mac",13,1599.00));
+	laptopList.add(new Laptop("MacBook Pro","Grey","Mac",15,1900.00));
   }
 
   /** Stores the Message in Datastore. */
@@ -169,8 +181,6 @@ public class Datastore {
 
     for (Entity entity : results.asIterable()) {
       try {
-        String idString = entity.getKey().getName();
-        UUID id = UUID.fromString(idString);
         String brand = (String) entity.getProperty("brand");
         String color = (String) entity.getProperty("color");
         String os = (String) entity.getProperty("os");
@@ -213,5 +223,84 @@ public class Datastore {
 	  storeLaptop(new Laptop("Dell","Grey","Windows",15,800.00));
 	  storeLaptop(new Laptop("MacBook Pro","Grey","Mac",15,1900.00));
   }
+  
+  /** Adds a laptop to the LaptopList
+   * @param Laptop to add to the list 
+   */
+  public void addLaptop(Laptop newLaptop) {
+	  laptopList.add(newLaptop);
+  }
+  
+  /**Returns a laptop list with laptops of a certain brand*/
+  public List<Laptop> searchBrand(String brand){
+	  //list of laptops that meet the brand requirements 
+	  List<Laptop> brandreturn=new ArrayList<>();
+	  for(Laptop e:laptopList) {
+		  if(e.getBrand().equals(brand.toLowerCase()))
+			  brandreturn.add(e);
+	  }
+	  return brandreturn; 
+  }
+  
+  /**Returns a laptop list with laptops of a certain OS*/
+  public List<Laptop> searchOs(String os){
+	  List<Laptop> osreturn=new ArrayList<>();
+	  for(Laptop e:laptopList) {
+		  if(e.getOS().equals(os.toLowerCase()))
+			  osreturn.add(e);
+	  }
+	  return osreturn; 
+  }
+  
+  /**Returns a laptop list with laptops of a certain color*/
+  public List<Laptop> searchColor(String color){
+	  List<Laptop> colorreturn=new ArrayList<>();
+	  for(Laptop e:laptopList) {
+		  if(e.getColor().equals(color.toLowerCase()))
+			  colorreturn.add(e);
+	  }
+	  return colorreturn; 
+  }
+
+  /**Returns all laptops above that size, inclusive*/ 
+  public List<Laptop> searchSizeAbove(int size){
+	  List<Laptop> sizeAboveReturn=new ArrayList<>();
+	  for(Laptop e:laptopList) {
+		  if(e.getSize()>=size)
+			  sizeAboveReturn.add(e);
+	  }
+	  return sizeAboveReturn;  
+  }
+  
+  /**Returns all laptops below that size, inclusive*/ 
+  public List<Laptop> searchSizeBelow(int size){
+	  List<Laptop> sizeBelowReturn=new ArrayList<>();
+	  for(Laptop e:laptopList) {
+		  if(e.getSize()<=size)
+			  sizeBelowReturn.add(e);
+	  }
+	  return sizeBelowReturn;	  
+  }
+  
+  /**Returns all laptops above the price limit, inclusive*/ 
+  public List<Laptop> searchPriceAbove(double price){
+	  List<Laptop> priceAboveReturn=new ArrayList<>();
+	  for(Laptop e:laptopList) {
+		  if(e.getPrice()>=price)
+			  priceAboveReturn.add(e);
+	  }
+	  return priceAboveReturn;	  
+  }
+  
+  /**Returns all laptops below the price limit, inclusive*/ 
+  public List<Laptop> searchPriceBelow(double price){
+	  List<Laptop> priceBelowReturn=new ArrayList<>();
+	  for(Laptop e:laptopList) {
+		  if(e.getPrice()<=price)
+			  priceBelowReturn.add(e);
+	  }
+	  return priceBelowReturn;	  
+  }
+  
   
 }

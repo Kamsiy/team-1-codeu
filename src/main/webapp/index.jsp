@@ -21,13 +21,7 @@ limitations under the License.
     <script src="/js/ui-builder.js"></script>
   </head>
   <body onload="addLoginOrLogoutLinkToNavigation();">
-    <nav>
-      <ul id="navigation">
-        <li><a class = "active" href="/">Home</a></li>
-        <li><a href="/aboutus.html">About Our Team</a></li>
-        <li><a href="/community.html">Community Page</a></li>
-      </ul>
-    </nav>
+    <%@include file="/WEB-INF/navigation.jsp" %>
     <h1>Shop</h1>
     <p> Welcome</p>
   </body>
