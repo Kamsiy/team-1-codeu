@@ -22,7 +22,13 @@ limitations under the License.
   </head>
   <body onload="addLoginOrLogoutLinkToNavigation();">
     <%@include file="/WEB-INF/navigation.jsp" %>
-    <h1>Shop</h1>
-    <p> Welcome</p>
+      <div class="homepage">
+        <h1>Shop</h1>
+        <p>Welcome to the Shop, enter an item to get started</p>
+        <form>
+          <input type="search" placeholder = "Search for an item" />
+          <input type="submit" value="Submit" class="button">
+        </form>
+    </div>
   </body>
 </html>
