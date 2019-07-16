@@ -78,7 +78,9 @@ p{
   padding: 0;
 }
 
-/* Home page */
+/* ======================== 
+    Home page 
+   ======================= */
 .homepage{
   text-align: center;
   margin: 100px auto 0 auto !important;
@@ -107,4 +109,21 @@ form>.button{
 }
 form>.button:hover{
   cursor: pointer;
+}
+
+.options{
+  margin-bottom: 5px;
+}
+select {
+  width: 160px;
+  text-align: center;
+  background: #f1f1f1;
+  border: 1px solid #dde2e7;
+  padding: 5px;
+}
+
+select:focus {
+  outline: black auto 2px;
+  text-align: left;
+  background: white;
 }

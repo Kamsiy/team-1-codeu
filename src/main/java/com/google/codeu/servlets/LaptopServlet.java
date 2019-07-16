@@ -35,21 +35,21 @@ public class LaptopServlet extends HttpServlet{
 	    List<Laptop> laptops = datastore.getAllLaptops();
 	    
 	    // get search criteria
-	    String brand = request.getParameter("brand");
-	    String color = request.getParameter("color");;
-	    String os = request.getParameter("os");
-	    String strSize = request.getParameter("size");
-	    int size = 0;
-	    if(strSize != null && strSize.length() > 0)
-	    	size = Integer.parseInt(strSize);
+	    // String brand = request.getParameter("brand");
+	    // String color = request.getParameter("color");;
+	    // String os = request.getParameter("os");
+	    // String strSize = request.getParameter("size");
+	    // int size = 0;
+	    // if(strSize != null && strSize.length() > 0)
+	    // 	size = Integer.parseInt(strSize);
 	    
-	    List<Laptop> filteredResult = getFilteredResult(laptops, brand, color, os, size);
+	    // List<Laptop> filteredResult = getFilteredResult(laptops, brand, color, os, size);
 	    
-	    Gson gson = new Gson();
-	    String json = gson.toJson(filteredResult);
+	    // Gson gson = new Gson();
+	    // String json = gson.toJson(filteredResult);
 
-	    response.setContentType("application/json");
-	    response.getOutputStream().println(json);
+	    // response.setContentType("application/json");
+	    // response.getOutputStream().println(json);
 	  }
 	  
 	  // filter the result by searching criteria
