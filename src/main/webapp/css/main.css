@@ -127,3 +127,39 @@ select:focus {
   text-align: left;
   background: white;
 }
+
+
+/* ===================
+   Merchant form
+   ====================
+*/
+#merchant-page{
+  text-align: center;
+  margin-top: 150px;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+#merchant-page h1{
+  padding: 0;
+}
+
+#merchant-page p{
+  color:black;
+}
+
+#merchant-page span{
+  width: 100px;
+  display: inline-block; 
+}
+
+#merchant-page span::after{
+  content: ':';
+}
+
+#merchant-page input[type='submit']{
+  width: 260px;
+  margin-top: 10px;
+  color: white;
+  background-color: #D52941;
+}
