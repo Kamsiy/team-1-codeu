@@ -8,7 +8,7 @@ public class Laptop {
 	  private String brand;
 	  private String color;
 	  private String os;
-	  private int size;
+	  private long size;
 	  private double price;
 	  
 	  public Laptop() {
@@ -19,11 +19,11 @@ public class Laptop {
 		  size=0;
 		  price=0;
 	  }
-	  public Laptop(String brand, String color, String os, int size, double price)  {
+	  public Laptop(String brand, String color, String os, long size, double price)  {
 		    this(UUID.randomUUID(), brand.toLowerCase(), color.toLowerCase(), os.toLowerCase(), size, price);
 		  }
 
-	  public Laptop(UUID id, String brand, String color, String os, int size, double price) {
+	  public Laptop(UUID id, String brand, String color, String os, long size, double price) {
 		this.id = id;
 	    this.brand = brand.toLowerCase();
 	    this.color = color.toLowerCase();
@@ -52,7 +52,7 @@ public class Laptop {
 		  return os;
 	  }
 	  
-	  public int getSize() {
+	  public long getSize() {
 		  return size;
 	  }
 

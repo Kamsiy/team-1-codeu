@@ -21,8 +21,6 @@ public class LaptopServlet extends HttpServlet{
 	  @Override
 	  public void init() {
 	    datastore = new Datastore();
-	    // add inital Laptop list
-	    datastore.addLaptopData();
 	  }
 
 	  /**
@@ -32,8 +30,8 @@ public class LaptopServlet extends HttpServlet{
 	  public void doGet(HttpServletRequest request, HttpServletResponse response)
 	      throws IOException {
 
-	    List<Laptop> laptops = datastore.getAllLaptops();
-	    
+	    List<Laptop> laptoplist = datastore.getAllLaptops();
+
 	    // get search criteria
 	    String brand = request.getParameter("brand");
 	    String color = request.getParameter("color");;
@@ -43,10 +41,10 @@ public class LaptopServlet extends HttpServlet{
 	    if(strSize != null && strSize.length() > 0)
 	    	size = Integer.parseInt(strSize);
 	    
-	    List<Laptop> filteredResult = getFilteredResult(laptops, brand, color, os, size);
+	    List<Laptop> laptops = getFilteredResult(laptoplist, brand, color, os, size);
 	    
 	    Gson gson = new Gson();
-	    String json = gson.toJson(filteredResult);
+	    String json = gson.toJson(laptops);
 
 	    response.setContentType("application/json");
 	    response.getOutputStream().println(json);

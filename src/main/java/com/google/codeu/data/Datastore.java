@@ -16,6 +16,7 @@
 
 package com.google.codeu.data;
 import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -39,15 +40,6 @@ public class Datastore {
   public Datastore() {
     datastore = DatastoreServiceFactory.getDatastoreService();
     laptopList= new ArrayList<>();
-	laptopList.add(new Laptop("Dell","Black","Windows",15,800.00));
-	laptopList.add(new Laptop("Thinkpad","Black","Windows",13,1200.00));
-	laptopList.add(new Laptop("Dell","Grey","Windows",15,800.00));
-	laptopList.add(new Laptop("Dell","Black","Linux",15,800.00));
-	laptopList.add(new Laptop("Thinkpad","Black","Windows",15,1699.00));
-	laptopList.add(new Laptop("Macbook Pro","Black","Mac",13,1599.00));
-	laptopList.add(new Laptop("MacBook Pro","Black","Mac",15,1900.00));
-	laptopList.add(new Laptop("Macbook Pro","Grey","Mac",13,1599.00));
-	laptopList.add(new Laptop("MacBook Pro","Grey","Mac",15,1900.00));
   }
 
   /** Stores the Message in Datastore. */
@@ -163,15 +155,14 @@ public class Datastore {
   
   /* Returns all laptops */
   public List<Laptop> getAllLaptops(){
-	Query query = new Query("Laptops")
+	Query query = new Query("Laptop")
 		            .addSort("price", SortDirection.ASCENDING);
 	PreparedQuery results = datastore.prepare(query);
-
+	//return this.laptopList;
 	return convertLaptopResults(results);	 
 	
   }
   
-
   /**
    * Converts the PreparedResults containing laptop entities to a List of laptop instances.
    */
@@ -184,7 +175,7 @@ public class Datastore {
         String brand = (String) entity.getProperty("brand");
         String color = (String) entity.getProperty("color");
         String os = (String) entity.getProperty("os");
-        int size = (int)entity.getProperty("size");
+        long size = (long)entity.getProperty("size");
         double price = (double) entity.getProperty("price");
 
         Laptop laptop = new Laptop(brand, color, os, size, price);
@@ -212,6 +203,8 @@ public class Datastore {
   /* Add hardcoded data to datastore */
   public void addLaptopData()
   {
+	  
+	  this.deleteAllLaptop();
 	  storeLaptop(new Laptop("Dell","Black","Windows",15,800.00));
 	  storeLaptop(new Laptop("Thinkpad","Black","Windows",13,1200.00));
 	  storeLaptop(new Laptop("Dell","Grey","Windows",15,800.00));
@@ -229,6 +222,25 @@ public class Datastore {
    */
   public void addLaptop(Laptop newLaptop) {
 	  laptopList.add(newLaptop);
+  }
+  
+  /* clean up laptop data */
+  public void deleteAllLaptop()
+  {
+		Query query = new Query("Laptop")
+	            .addSort("price", SortDirection.ASCENDING);
+		PreparedQuery results = datastore.prepare(query);
+		for (Entity entity : results.asIterable()) {
+	        try {
+	          String id = (String) entity.getProperty("id");
+	          datastore.delete(entity.getKey());
+	        } catch (Exception e) {
+	          System.err.println("Error reading laptop data.");
+	          System.err.println(entity.toString());
+	          e.printStackTrace();
+	        }
+		}
+	  
   }
   
   /**Returns a laptop list with laptops of a certain brand*/

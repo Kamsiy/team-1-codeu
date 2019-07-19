@@ -26,6 +26,45 @@ function buildMessageDiv(message) {
   return messageDiv;
 }
 
+function buildLaptopDiv(laptop){
+
+  const bodyDiv = document.createElement('div');
+  bodyDiv.classList.add('laptop-body');
+  bodyDiv.innerHTML = '<tr><td>'+laptop.brand+'</td>' +
+                       '<td>'+ laptop.color '</td><td>' +
+                       laptop.os + '</td><td>' + laptop.price +'</td></tr>' ;
+  const laptopDiv = document.createElement('div');
+  laptopDiv.classList.add('laptop-div');
+  laptopDiv.appendChild(bodyDiv);  
+
+  return laptopDiv;
+}
+
+/** Fetches messages and add them to the page. */
+function fetchLaptops() {
+  const url = '/laptops';
+  fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((laptops) => {
+        const laptopContainer = document.getElementById('laptop-container');
+        if (laptops.length == 0) {
+          laptopContainer.innerHTML = '<p>no laptop in shop yet.</p>';
+        } else {
+          laptopContainer.innerHTML = '<table style="width:100%">' +
+                                '<tr> <th> Brand </th> '+
+                                '<th> Color </th> <th> OS </th> <th> Price</th>';
+
+        }
+        laptops.forEach((laptop) => {
+          const laptopDiv = buildLaptopDiv(laptop);
+          laptopContainer.appendChild(laptopDiv);
+        }
+        laptopCOntainer.appendChild('</tr></table>'));
+      });
+}
+
 /**
  * Creates an li element.
  * @param {Element} childElement
@@ -47,5 +86,11 @@ function createLink(url, text) {
   const linkElement = document.createElement('a');
   linkElement.appendChild(document.createTextNode(text));
   linkElement.href = url;
-  return linkElement;
+  return 
+}
+
+function buildShop(){
+  addLoginOrLogoutLinkToNavigation();
+  fetchLaptops();
+
 }
