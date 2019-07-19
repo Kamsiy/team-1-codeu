@@ -10,6 +10,7 @@ public class Laptop {
 	  private String os;
 	  private long size;
 	  private double price;
+	  private String description;
 	  
 	  public Laptop() {
 		  id=UUID.randomUUID();
@@ -18,18 +19,20 @@ public class Laptop {
 		  os=null;
 		  size=0;
 		  price=0;
+		  description = null;
 	  }
-	  public Laptop(String brand, String color, String os, long size, double price)  {
-		    this(UUID.randomUUID(), brand.toLowerCase(), color.toLowerCase(), os.toLowerCase(), size, price);
+	  public Laptop(String brand, String color, String os, long size, double price, String description)  {
+		    this(UUID.randomUUID(), brand.toLowerCase(), color.toLowerCase(), os.toLowerCase(), size, price, description);
 		  }
 
-	  public Laptop(UUID id, String brand, String color, String os, long size, double price) {
+	  public Laptop(UUID id, String brand, String color, String os, long size, double price, String description) {
 		this.id = id;
 	    this.brand = brand.toLowerCase();
 	    this.color = color.toLowerCase();
 	    this.os = os.toLowerCase();
 	    this.size = size;
 	    this.price = price;
+	    this.description = description;
 
 	  }
 	  
@@ -61,9 +64,8 @@ public class Laptop {
 	  }
 	  public void setId(UUID i) {
 		     id=i;
-	 }
-
-
+	  }
+	  
 	  public void setBrand(String b){
 	     brand=b.toLowerCase();
 	  }
@@ -82,5 +84,15 @@ public class Laptop {
 
 	  public void setPrice(double p) {
 		   price=p;
+	  }
+	  
+	  public String getDescription()
+	  {
+		  return description;
+	  }
+	  
+	  public void setDescription(String d)
+	  {
+		  this.description = d;
 	  }
 }

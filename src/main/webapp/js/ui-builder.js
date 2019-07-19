@@ -28,21 +28,28 @@ function buildMessageDiv(message) {
 
 function buildLaptopDiv(laptop){
 
-  const bodyDiv = document.createElement('div');
+  const bodyDiv = document.createElement('th');
   bodyDiv.classList.add('laptop-body');
-  bodyDiv.innerHTML = '<tr><td>'+laptop.brand+'</td>' +
-                       '<td>'+ laptop.color '</td><td>' +
-                       laptop.os + '</td><td>' + laptop.price +'</td></tr>' ;
-  const laptopDiv = document.createElement('div');
+  bodyDiv.innerHTML = laptop.description; 
+  const priceDiv = document.createElement('th');
+  priceDiv.classList.add('laptop-price');
+  priceDiv.innerHTML = '$'+laptop.price; 
+  const laptopDiv = document.createElement('tr');
   laptopDiv.classList.add('laptop-div');
-  laptopDiv.appendChild(bodyDiv);  
-
+  laptopDiv.appendChild(bodyDiv);
+  laptopDiv.appendChild(priceDiv);
   return laptopDiv;
 }
 
 /** Fetches messages and add them to the page. */
 function fetchLaptops() {
-  const url = '/laptops';
+  var brand = document.getElementById('brand').value;
+  var os = document.getElementById('os').value;
+  var size = document.getElementById('size').value;
+  var color = document.getElementById('color').value;
+  var description = document.getElementById('description').value;
+  var url = '/laptops?'+'brand='+brand+'&os='+os+'&size='+size+
+        '&color='+color+'&description='+description;
   fetch(url)
       .then((response) => {
         return response.json();
@@ -52,16 +59,12 @@ function fetchLaptops() {
         if (laptops.length == 0) {
           laptopContainer.innerHTML = '<p>no laptop in shop yet.</p>';
         } else {
-          laptopContainer.innerHTML = '<table style="width:100%">' +
-                                '<tr> <th> Brand </th> '+
-                                '<th> Color </th> <th> OS </th> <th> Price</th>';
-
+          laptopContainer.innerHTML = '';
         }
         laptops.forEach((laptop) => {
           const laptopDiv = buildLaptopDiv(laptop);
           laptopContainer.appendChild(laptopDiv);
-        }
-        laptopCOntainer.appendChild('</tr></table>'));
+        });
       });
 }
 
@@ -90,7 +93,7 @@ function createLink(url, text) {
 }
 
 function buildShop(){
-  addLoginOrLogoutLinkToNavigation();
-  fetchLaptops();
+  addLoginOrLogoutLinkToNavigation(); 
+  /* fetchLaptops(); */
 
 }

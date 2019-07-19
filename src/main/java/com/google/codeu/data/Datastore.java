@@ -40,6 +40,7 @@ public class Datastore {
   public Datastore() {
     datastore = DatastoreServiceFactory.getDatastoreService();
     laptopList= new ArrayList<>();
+    this.addLaptopData();
   }
 
   /** Stores the Message in Datastore. */
@@ -177,8 +178,9 @@ public class Datastore {
         String os = (String) entity.getProperty("os");
         long size = (long)entity.getProperty("size");
         double price = (double) entity.getProperty("price");
+        String description = (String) entity.getProperty("description");
 
-        Laptop laptop = new Laptop(brand, color, os, size, price);
+        Laptop laptop = new Laptop(brand, color, os, size, price,description );
         laptops.add(laptop);
       } catch (Exception e) {
         System.err.println("Error reading laptop data.");
@@ -197,6 +199,7 @@ public class Datastore {
    laptopEntity.setProperty("os",laptop.getOS());
    laptopEntity.setProperty("size", laptop.getSize());
    laptopEntity.setProperty("price", laptop.getPrice());
+   laptopEntity.setProperty("description", laptop.getDescription());
    datastore.put(laptopEntity);
   }  
   
@@ -205,16 +208,16 @@ public class Datastore {
   {
 	  
 	  this.deleteAllLaptop();
-	  storeLaptop(new Laptop("Dell","Black","Windows",15,800.00));
-	  storeLaptop(new Laptop("Thinkpad","Black","Windows",13,1200.00));
-	  storeLaptop(new Laptop("Dell","Grey","Windows",15,800.00));
-	  storeLaptop(new Laptop("Dell","Black","Linux",15,800.00));
-	  storeLaptop(new Laptop("Thinkpad","Black","Windows",15,1699.00));
-	  storeLaptop(new Laptop("Macbook Pro","Black","Mac",13,1599.00));
-	  storeLaptop(new Laptop("MacBook Pro","Black","Mac",15,1900.00));
-	  storeLaptop(new Laptop("Macbook Pro","Grey","Mac",13,1599.00));
-	  storeLaptop(new Laptop("Dell","Grey","Windows",15,800.00));
-	  storeLaptop(new Laptop("MacBook Pro","Grey","Mac",15,1900.00));
+	  storeLaptop(new Laptop("Dell","Black","Windows",15,1380.00,"Dell XPS 15 inch 9560 black"));
+	  storeLaptop(new Laptop("Thinkpad","Black","Windows",13,899.00,"Lenovo - ThinkPad L380 Yoga Touch-Screen 8GB RAM black"));
+	  storeLaptop(new Laptop("Dell","Black","Windows",13,599.00,"Dell Inspiron 13 inch Touch Screen AMD 8GB RAM black"));
+	  storeLaptop(new Laptop("Dell","Black","Linux",13,850.00,"Dell XPS 13 inch Developer Edition Black"));
+	  storeLaptop(new Laptop("Thinkpad","Black","Windows",15,2100.00,"Lenovo - ThinkPad X1 Extreme 15 inch 16GB RAM black"));
+	  storeLaptop(new Laptop("Macbook Pro","Silver","Mac",13,1399.00, "MacBook Pro 13 inc 8GB RAM Silver"));
+	  storeLaptop(new Laptop("MacBook Pro","Silver","Mac",15,2400.00,"MacBook Pro 15 inc with Touch Bar 16GB RAM Silver"));
+	  storeLaptop(new Laptop("MacBook Pro","Grey","Mac",13,1399.00,"MacBook Pro 13 inch 8GB RAM Space Grey"));
+	  storeLaptop(new Laptop("Dell","Grey","Windows",15,590.00,"Dell Inspiron 15 inch 5000 Series Grey"));
+	  storeLaptop(new Laptop("MacBook Pro","Grey","Mac",15,2400.00, "MacBook Pro 15 inc with Touch Bar 16GB RAM Space Grey"));
   }
   
   /** Adds a laptop to the LaptopList

@@ -20,29 +20,42 @@ limitations under the License.
     <script src="/js/navigation-loader.js"></script>
     <script src="/js/ui-builder.js"></script>
   </head>
-  <body onload="addLoginOrLogoutLinkToNavigation();">
+  <body onload="buildShop();">
     <%@include file="/WEB-INF/navigation.jsp" %>
       <div class="homepage">
         <h1>Shop</h1>
-        <p>Welcome to the Shop, enter an item to get started</p>
-        <form>
+        <p>Welcome to the Shop, search your laptop to get started</p>
+        <form id="laptop-form"  >
           <div class="options">
-            <select>
-              <option value="" disabled selected>brand</option>
+            <select name="brand" id="brand">
+              <option value="">brand</option>
+              <option value="Dell">Dell</option>
+              <option value="Macbook Pro">MacBook Pro</option>
+              <option value="Thinkpad">Lenovo</option>
             </select>
-            <select>
-              <option value="" disabled selected>OS</option>
+            <select name="os" id="os">
+              <option value="">OS</option>
+              <option value="Mac">Mac</option>
+              <option value="Windows">Windows</option>
             </select>
-            <select>
-              <option value="" disabled selected>size</option>
+            <select name="size" id="size">
+              <option value="">size</option>
+              <option value="13">13"</option>
+              <option value="15">15"</option>
             </select>
-            <select>
-              <option value="" disabled selected>color</option>
+            <select name="color" id="color">
+              <option value="">color</option>
+              <option value="Black">Black</option>
+              <option value="Grey">Grey</option>
             </select>
           </div>
-          <input type="search" placeholder = "Search for an item" />
-          <input type="submit" value="Submit" class="button">
+          <input name="description" id="description" type="search" placeholder = "Search for an item" />
+          <button onclick="fetchLaptops();return false;"> Submit</button>
         </form>
+      <p>
+        <table id="laptop-container" align="left" style = "width:90%" >
+        </table>
+      </p>
     </div>
   </body>
 </html>

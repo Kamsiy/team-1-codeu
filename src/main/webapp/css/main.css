@@ -43,6 +43,10 @@ nav li {
   padding: 14px 16px;
 }
 
+th {
+  align:left;
+}
+
 a {
 	text-decoration: none;
 }
