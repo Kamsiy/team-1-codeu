@@ -47,13 +47,14 @@ limitations under the License.
               <option value="">color</option>
               <option value="Black">Black</option>
               <option value="Grey">Grey</option>
+              <option value="Silver">Silver</option>
             </select>
           </div>
           <input name="description" id="description" type="search" placeholder = "Search for an item" />
           <button onclick="fetchLaptops();return false;"> Submit</button>
         </form>
       <p>
-        <table id="laptop-container" align="left" style = "width:90%" >
+        <table id="laptop-container" align="center" style = "width:90%" >
         </table>
       </p>
     </div>

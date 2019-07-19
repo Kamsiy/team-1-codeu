@@ -27,6 +27,15 @@ function buildMessageDiv(message) {
 }
 
 function buildLaptopDiv(laptop){
+  const imgDiv = document.createElement('th');
+  imgDiv.classList.add('laptop-body');
+  var brand = laptop.brand;
+  if(laptop.os == 'mac'){
+    brand = laptop.os;
+  }
+  imgDiv.innerHTML = '<img src=/css/'+brand+laptop.size
+        +laptop.color + laptop.os+'.jpg alter='
+        +laptop.description+' style="width:60px;height:60px;">'; 
 
   const bodyDiv = document.createElement('th');
   bodyDiv.classList.add('laptop-body');
@@ -36,6 +45,7 @@ function buildLaptopDiv(laptop){
   priceDiv.innerHTML = '$'+laptop.price; 
   const laptopDiv = document.createElement('tr');
   laptopDiv.classList.add('laptop-div');
+  laptopDiv.appendChild(imgDiv);
   laptopDiv.appendChild(bodyDiv);
   laptopDiv.appendChild(priceDiv);
   return laptopDiv;
