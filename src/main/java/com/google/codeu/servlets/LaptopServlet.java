@@ -39,8 +39,8 @@ public class LaptopServlet extends HttpServlet{
 	    String strSize = request.getParameter("size");
 	    int size = 0;
 	    if(strSize != null && strSize.length() > 0)
-	    	size = Integer.parseInt(strSize);
-	    
+	     	size = Integer.parseInt(strSize);
+
 	    List<Laptop> laptops = getFilteredResult(laptoplist, brand, color, os, size);
 	    
 	    Gson gson = new Gson();

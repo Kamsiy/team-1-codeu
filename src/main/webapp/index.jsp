@@ -22,7 +22,27 @@ limitations under the License.
   </head>
   <body onload="addLoginOrLogoutLinkToNavigation();">
     <%@include file="/WEB-INF/navigation.jsp" %>
-    <h1>Shop</h1>
-    <p> Welcome</p>
+      <div class="homepage">
+        <h1>Shop</h1>
+        <p>Welcome to the Shop, enter an item to get started</p>
+        <form>
+          <div class="options">
+            <select>
+              <option value="" disabled selected>brand</option>
+            </select>
+            <select>
+              <option value="" disabled selected>OS</option>
+            </select>
+            <select>
+              <option value="" disabled selected>size</option>
+            </select>
+            <select>
+              <option value="" disabled selected>color</option>
+            </select>
+          </div>
+          <input type="search" placeholder = "Search for an item" />
+          <input type="submit" value="Submit" class="button">
+        </form>
+    </div>
   </body>
 </html>
