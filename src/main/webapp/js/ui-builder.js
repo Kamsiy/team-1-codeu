@@ -53,7 +53,7 @@ function buildLaptopDiv(laptop){
 
 /** Fetches messages and add them to the page. */
 function fetchLaptops() {
-  addLoginOrLogoutLinkToNavigation(); 
+
   var brand = document.getElementById('brand').value;
   var os = document.getElementById('os').value;
   var size = document.getElementById('size').value;
