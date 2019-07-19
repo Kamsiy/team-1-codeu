@@ -20,7 +20,7 @@ limitations under the License.
     <script src="/js/navigation-loader.js"></script>
     <script src="/js/ui-builder.js"></script>
   </head>
-  <body onload="buildShop();">
+  <body onload="addLoginOrLogoutLinkToNavigation();">
     <%@include file="/WEB-INF/navigation.jsp" %>
       <div class="homepage">
         <h1>Shop</h1>
