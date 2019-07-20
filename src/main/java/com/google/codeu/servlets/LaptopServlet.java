@@ -21,8 +21,6 @@ public class LaptopServlet extends HttpServlet{
 	  @Override
 	  public void init() {
 	    datastore = new Datastore();
-	    // add inital Laptop list
-	    datastore.addLaptopData();
 	  }
 
 	  /**
@@ -32,41 +30,45 @@ public class LaptopServlet extends HttpServlet{
 	  public void doGet(HttpServletRequest request, HttpServletResponse response)
 	      throws IOException {
 
-	    List<Laptop> laptops = datastore.getAllLaptops();
-	    
-	    // get search criteria
-	    // String brand = request.getParameter("brand");
-	    // String color = request.getParameter("color");;
-	    // String os = request.getParameter("os");
-	    // String strSize = request.getParameter("size");
-	    // int size = 0;
-	    // if(strSize != null && strSize.length() > 0)
-	    // 	size = Integer.parseInt(strSize);
-	    
-	    // List<Laptop> filteredResult = getFilteredResult(laptops, brand, color, os, size);
-	    
-	    // Gson gson = new Gson();
-	    // String json = gson.toJson(filteredResult);
+	    List<Laptop> laptoplist = datastore.getAllLaptops();
 
-	    // response.setContentType("application/json");
-	    // response.getOutputStream().println(json);
+	    // get search criteria
+	    String brand = request.getParameter("brand");
+	    String color = request.getParameter("color");
+	    String os = request.getParameter("os");
+	    String description = request.getParameter("description");
+	    String strSize = request.getParameter("size");
+	    int size = 0;
+	    if(strSize != null && strSize.length() > 0)
+	     	size = Integer.parseInt(strSize);
+
+	    List<Laptop> laptops = getFilteredResult(laptoplist, brand, color, os, size, description);
+	    
+	    Gson gson = new Gson();
+	    String json = gson.toJson(laptops);
+
+	    response.setContentType("application/json");
+	    response.getOutputStream().println(json);
 	  }
 	  
 	  // filter the result by searching criteria
-	  private List<Laptop> getFilteredResult(List<Laptop> laptops, String brand, String color, String os, int size)
+	  private List<Laptop> getFilteredResult(List<Laptop> laptops, String brand, String color, String os, int size, String d)
 	  {
 		  List<Laptop> resultList = new ArrayList<>();
 
 		  for(Laptop laptop : laptops)
 		  {
 			  boolean isValidRecord = true;
-			  if(brand != null && laptop.getBrand().compareTo(brand) != 0)
+			  if(brand != null && brand.length() > 0 && laptop.getBrand().compareTo(brand.toLowerCase()) != 0)
 				  isValidRecord = false;
-			  if(color != null && laptop.getColor().compareTo(color) != 0)
+			  if(color != null && color.length() > 0 && laptop.getColor().compareTo(color.toLowerCase()) != 0)
 				  isValidRecord = false;
-			  if (os != null && laptop.getOS().compareTo(os) != 0)
+			  if (os != null && os.length() > 0 && laptop.getOS().compareTo(os.toLowerCase()) != 0)
 				  isValidRecord = false;
 			  if (size > 0 && laptop.getSize() != size)
+				  isValidRecord = false;
+			  
+			  if (d != null && d.length() > 0 && laptop.getDescription().toLowerCase().indexOf(d.toLowerCase()) < 0)
 				  isValidRecord = false;
 			  
 			  if(isValidRecord)

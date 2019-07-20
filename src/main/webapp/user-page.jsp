@@ -35,7 +35,7 @@
       }
     </script>
   </head>
-  <body onload="buildUI();">
+  <body onload="addLoginOrLogoutLinkToNavigation();">
     <%@include file="/WEB-INF/navigation.jsp" %>
     <h1 id="page-title">User Page</h1>
 
