@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Community Page</title>
+    <title>Shopper Reviews</title>
     <link rel="stylesheet" href="/css/main.css">
     <script src="/js/ui-builder.js"></script>
 
@@ -44,13 +44,13 @@
                 .then((loginStatus) => {
                   if (loginStatus.isLoggedIn) {
                     navigationElement.appendChild(createListItem(createLink(
-                        '/user-page.html?user=' + loginStatus.username, 'Your Page')));
+                        '/user-page.html?user=' + loginStatus.username, 'Shopper Page')));
 
                     navigationElement.appendChild(
                         createListItem(createLink('/logout', 'Logout')));
                   } else {
                     navigationElement.appendChild(
-                        createListItem(createLink('/login', 'Your Page')));
+                        createListItem(createLink('/login', 'Shopper Page')));
                     navigationElement.appendChild(
                         createListItem(createLink('/logout', 'Logout')));
                   }
@@ -61,10 +61,10 @@
   </head>
   <body onload="buildUI()">
     <%@include file="/WEB-INF/navigation.jsp" %>
-    <div id="content">
-      <h1>Community Page</h1>
-      <p>Here is a list of every user who has posted a message:</p>
-      <hr/>
+    <div class="community" id="content">
+      <h1>Shopper Reviews</h1>
+      <p>Here is a list of every user who has posted a review. Click on a user email to see their history of reviews: </p>
+      <hr class="type_3">
       <ul id="list">Loading...</ul>
     </div>
   </body>

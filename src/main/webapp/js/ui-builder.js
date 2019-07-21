@@ -90,6 +90,13 @@ function createListItem(childElement) {
   return listItemElement;
 }
 
+function createListItemByClass(childElement, classname) {
+  var listItemElement = document.createElement('li');
+  listItemElement.classname = classname;
+  listItemElement.appendChild(childElement);
+  return listItemElement;
+}
+
 /**
  * Creates an anchor element.
  * @param {string} url
@@ -100,6 +107,7 @@ function createLink(url, text) {
   const linkElement = document.createElement('a');
   linkElement.appendChild(document.createTextNode(text));
   linkElement.href = url;
+  linkElement.classList.add("active");
   return linkElement;
 }
 

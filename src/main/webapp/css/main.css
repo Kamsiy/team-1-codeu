@@ -1,42 +1,170 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
 
 /* Prevent the page from becoming too wide. */
-body {
-  margin: 0;
-  background-image: url("/css/trianglify.png");
+
+.home-bg {
+  background-image: url("/css/homepage.png");
   background-attachment: fixed;
-  font-family: 'Source Sans Pro'
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/*
+.about-bg {
+  background-image: url("/css/background.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+*/
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-family: 'Source Sans Pro';
+  font-weight:400;
+  font-size: 16px;
 }
 
 h1 {
-	text-align: center;
-	color: #D52941;
-	padding-top: 100px;
-	font-size: 24pt;
+  text-align: center;
+  color: #068EF6;
+  font-size: 30pt;
+  margin: 0;
+  padding: 10;
+  border: 0;
+  outline: 0;
+  font-family: 'Source Sans Pro';
 }
 
 p {
-	color: #D52941;
-	font-size: 18pt;
-	padding-left: 100px;
+  color: #068EF6;
+  font-size: 16pt;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  font-family: 'Source Sans Pro';
 }
+
+/* Shopper Page */
+
+.container #page-title h1{
+  text-align: center;
+  color: #068EF6;
+  font-size: 30pt;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  font-family: 'Source Sans Pro';
+  top: 10;
+  padding-top: 5px;
+  padding-bottom: 40px;
+  padding-left:20px;
+}
+
+#message-form {
+  color: #E351A0;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+#message-container #about-me-container{
+  color: #E351A0;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+/*about us page style*/
+
+.about-style h1{
+  text-align: left;
+  color: #068EF6;
+  font-size: 30pt;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  font-family: 'Source Sans Pro';
+  top: 40;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  padding-left:20px;
+}
+
+.about-style h2{
+  font-family: 'Source Sans Pro';
+  color: #068EF6;
+  float: left;
+  padding-left:20px;
+}
+
+.about-style h3{
+  font-family: 'Source Sans Pro';
+  color: #068EF6;
+  float: left;
+}
+
+.about-style p {
+  font-family: 'Source Sans Pro';
+  color: #E351A0;
+  font-size: 15px;
+  float: left;
+  padding-left:30px;
+}
+
+
+.welcome-text h1 {
+  top: 80;
+  padding-bottom: 30px;
+  color: #fff;
+}
+
+
+.welcome-text p {
+  padding-top: 15px;
+  padding-bottom: 50px;
+  color: #fff;
+}
+
+#navigation li{
+  font-family: 'Source Sans Pro';
+  font-size: 16px;
+}
+
 
 nav ul {
   list-style-type: none;
-  padding: 0;
-  margin: 0;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin: 0 2px;
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: space-around;
   overflow: hidden;
-  background-color: #D52941; /* rust red */
-  position: fixed;
-  top: 0;
-  width: 100%;
+  background-color: #068EF6;
+  outline: 0;
+  border: 0;
 }
 
 li {
-	float: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  list-style: none;
 }
 
-/* Keep navigation menu on one line. */
 nav li {
   display: block;
   text-align: center;
@@ -44,11 +172,11 @@ nav li {
 }
 
 th {
-  align:left;
+  align: left;
 }
 
 a {
-	text-decoration: none;
+	text-decoration: none !important;
 }
 
 a:link {
@@ -59,19 +187,22 @@ a:visited {
 	color: white;
 }
 
-li a:hover:not(.active) {
-	color: #FCD581; /*mellow yellow*/
+.active:hover{
+  color: #ff589e; /*bright pink*/
+  border-top: 4px solid #fff;
+  border-bottom: 4px solid #fff;
+  padding: 6px 0;
 }
 
 .active {
-	color: #FCD581; /*mellow yellow*/
+	color: #ff589e; /*bright pink*/
+  text-decoration: bold;
+  transition: 0.3s ease;
+  background: #068EF6;
 }
 
 i {
 	background-size: 20px 30px;
-}
-p{
-  padding: 0;
 }
 
 /* General classes */
@@ -88,6 +219,7 @@ p{
 .homepage{
   text-align: center;
   margin: 100px auto 0 auto !important;
+  background: transparent;
 }
 
 .homepage input[type="search"]{
@@ -118,6 +250,7 @@ form>.button:hover{
 .options{
   margin-bottom: 5px;
 }
+
 select {
   width: 160px;
   text-align: center;
@@ -130,4 +263,114 @@ select:focus {
   outline: black auto 2px;
   text-align: left;
   background: white;
+}
+
+::selection {
+  background: #ff589e;
+  color: #fff;
+}
+
+::-moz-selection {
+  background: #ff589e;
+  color: #fff;
+}
+
+/*button style*/
+
+.button button{
+  display: inline-block;
+  border-radius: 4px;
+  font-family: 'Source Sans Pro';
+  background-color: #068EF6;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 15px;
+  padding: 0px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/*hr bar on community page*/
+hr.type_3 {
+border: 0;
+height: 25px;
+background-image: url(/css/type_3.png);
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.community h1 {
+  padding-top: 30px;
+  color: #068EF6;
+  padding-bottom: 50px;
+}
+
+.community p {
+  padding-left: 45px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  color: #E351A0;
+}
+
+/* ===================
+   Merchant form
+   ====================
+*/
+#merchant-page{
+  text-align: center;
+  margin-top: 150px;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+#merchant-page h1{
+  padding: 0;
+}
+
+#merchant-page p{
+  color:black;
+}
+
+#merchant-page span{
+  width: 100px;
+  display: inline-block; 
+}
+
+#merchant-page span::after{
+  content: ':';
+}
+
+#merchant-page input[type='submit']{
+  width: 260px;
+  margin-top: 10px;
+  color: white;
+  background-color: #D52941;
 }
