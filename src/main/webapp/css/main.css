@@ -171,6 +171,12 @@ nav li {
   padding: 14px 16px;
 }
 
+#list{
+  display: block;
+  position: center;
+
+}
+
 th {
   align: left;
 }
@@ -185,6 +191,24 @@ a:link {
 
 a:visited {
 	color: white;
+}
+
+table#list {
+    width:100%; 
+    margin-left:0%; 
+    margin-right:15%;
+}
+
+#list a{
+  color:  blue;
+  text-align: left;
+  padding: 14px 16px;
+}
+
+#list th
+{
+  text-align: left;
+  align-items: left;;
 }
 
 .active:hover{

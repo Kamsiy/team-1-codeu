@@ -29,11 +29,13 @@
        */
       function buildUserListItem(user){
         const userLink = document.createElement('a');
-        userLink.setAttribute('href', '/user-page.html?user=' + user);
+        userLink.setAttribute('href', '/user-page.jsp?user=' + user);
         userLink.appendChild(document.createTextNode(user));
-        const userListItem = document.createElement('li');
+        const userListItem = document.createElement('th');
         userListItem.appendChild(userLink);
-        return userListItem;
+        const userDiv = document.createElement('tr');
+        userDiv.appendChild(userListItem);
+        return userDiv;
       }
 
       /** Fetches data and populates the UI of the page. */
@@ -65,7 +67,8 @@
       <h1>Shopper Reviews</h1>
       <p>Here is a list of every user who has posted a review. Click on a user email to see their history of reviews: </p>
       <hr class="type_3">
-      <ul id="list">Loading...</ul>
+      <table id="list" align="left" >
+      </table>
     </div>
   </body>
 </html>
