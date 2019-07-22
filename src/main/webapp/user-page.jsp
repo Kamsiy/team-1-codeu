@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="ShopperPage">
   <head>
     <title>User Page</title>
     <meta charset="UTF-8">
@@ -18,13 +18,13 @@
                 .then((loginStatus) => {
                   if (loginStatus.isLoggedIn) {
                     navigationElement.appendChild(createListItem(createLink(
-                        '/user-page.html?user=' + loginStatus.username, 'Your Page')));
+                        '/user-page.html?user=' + loginStatus.username, 'Shopper Page')));
 
                     navigationElement.appendChild(
                         createListItem(createLink('/logout', 'Logout')));
                   } else {
                     navigationElement.appendChild(
-                        createListItem(createLink('/login', 'Your Page')));
+                        createListItem(createLink('/login', 'Shopper Page')));
                     navigationElement.appendChild(
                         createListItem(createLink('/logout', 'Logout')));
                   }
@@ -35,9 +35,21 @@
       }
     </script>
   </head>
-  <body onload="buildUI();">
+  <body onload="addLoginOrLogoutLinkToNavigation();">
     <%@include file="/WEB-INF/navigation.jsp" %>
-    <h1 id="page-title">User Page</h1>
+          <div class="welcome-area" id="welcome">
+
+            <div class="header-text">
+                <div class="container">
+                    <div class="row">
+                        <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-md-12 col-sm-12">
+                                <h1 id="page-title">Shopper Page</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
     <form id="message-form" action="/messages" method="POST" class="hidden">
       Enter a new message:

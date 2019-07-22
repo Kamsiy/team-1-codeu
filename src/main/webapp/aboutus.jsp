@@ -12,7 +12,7 @@ limitations under the License.
 -->
 
 <!DOCTYPE html>
-<html>
+<html class="about-bg">
   <head>
     <meta charset="UTF-8">
     <title>About Us</title>
@@ -28,13 +28,13 @@ limitations under the License.
                 .then((loginStatus) => {
                   if (loginStatus.isLoggedIn) {
                     navigationElement.appendChild(createListItem(createLink(
-                        '/user-page.html?user=' + loginStatus.username, 'Your Page')));
+                        '/user-page.html?user=' + loginStatus.username, 'Shopper Page')));
 
                     navigationElement.appendChild(
                         createListItem(createLink('/logout', 'Logout')));
                   } else {
                     navigationElement.appendChild(
-                        createListItem(createLink('/login', 'Your Page')));
+                        createListItem(createLink('/login', 'Shopper Page')));
                     navigationElement.appendChild(
                         createListItem(createLink('/logout', 'Logout')));
                   }
@@ -49,6 +49,7 @@ limitations under the License.
     /* Editable marker that displays when a user clicks in the map. */
     let editMarker;	  
     function createMap(){
+      addLoginOrLogoutLinkToNavigation();
       map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 38.5949, lng: -94.8923},
         zoom: 4
@@ -161,34 +162,59 @@ limitations under the License.
   </style>
   </head>
   <body onload="createMap();">
-  <h1>Team 1 Map</h1>
-  <div id="map"></div>
-  <p>Find out where Team 1 is, or click on the map and enter your location to save your hometown!</p>
     <%@include file="/WEB-INF/navigation.jsp" %>
-    <h1>About Our Team</h1>
-    <h2>Eleanor</h2>
-    <ul>
-      <li>Summer Feelz: Sunny, Work, Eternity</li>
-      <li>Aspirational Hobby: Filmmaking</li>
-      <li>Ask me About: Investments in Stocks</li>
-    </ul>
-    <h2>Antara</h2>
-    <ul>
-      <li>Summer Feelz: napping til noon </li>
-      <li>Aspirational Hobby: cooking, reading, and traveling. </li>
-      <li>Ask me About: Dallas sports teams and being a RA! </li>
-    </ul>
-    <h2>kamsi</h2>
-    <ul>
-      <li>Summer Feelz: sleeping, soccer, skating</li>
-      <li>Aspirational Hobby: Tennis</li>
-      <li>Ask me About: anime, music, videogames, sports</li>
-    </ul>
-    <h2>Kevin</h2>
-    <ul>
-      <li>Summer Feelz: porch hammock coding</li>
-      <li>Aspirational Hobby: professional cat photography</li>
-      <li>Ask me About: creative coding, especially Processing and P5.js!</li>
-    </ul>
+    <div class="about-style">
+      <h1>Our Team</h1>
+      <h2>Eleanor</h2>
+      <ul>
+        <p>
+          Hey, I&apos;m Eleanor. I&apos;m responsible for the design of the website (HTML/CSS) and the shopping content filter, which used datastore to keep the laptop specifier results and also make the navigation work. For fun, I enjoy drawing and painting.
+        </p>
+      </ul>
+      <h2>Antara</h2>
+      <ul>
+        <p>
+          Hi, I am Antara. I am an incoming junior studying computer engineering at Johns Hopkins University. I worked on the Google Maps and datastore portion of Laptop Shop. My sister told me I&apos;d never finish codeU on time because I procrastinate so much. I told her, &quot; Just you wait!&quot;  
+        </p>
+      </ul>
+      <h2>Kamsi</h2>
+      <ul>
+        <p>
+          Hi, i&apos;m kamsi. I&apos;m a sophomore at iowa state university. I worked on the customer reviews part of the project. I follow a lot of sports; I play a lot  of soccer and basketball in my free time.
+        </p>
+      </ul>
+      <h2>Kevin</h2>
+      <ul>
+        <p>
+          Hi, I&apos;m Kevin! I&apos;m a software engineer at Google, where I work for Google Maps. For fun I enjoy creative coding, hanging out with my cat, and exploring the hiking trails around California!
+        </p>
+      </ul>
+
+      <center><img src="/css/gphoto.png" alt="Group Photo" class="center"></center>
+<!--
+      <div>
+        <p>Find out where you can conveniently buy laptops</p>
+      </div>
+    </div>
+
+
+    <div class="homepage">
+          <div class="welcome-area" id="welcome">
+
+            <div class="header-text">
+          
+                <div class="container">
+                    <div class="row">
+                        <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-md-12 col-sm-12">
+                              <h1></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          </div>
+      </div>
+  <div id="map"></div>
+-->
   </body>
 </html>
