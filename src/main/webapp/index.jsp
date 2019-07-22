@@ -12,7 +12,7 @@ limitations under the License.
 -->
 
 <!DOCTYPE html>
-<html>
+<html class="home-bg">
   <head>
     <meta charset="UTF-8">
     <title>CodeU 2019 Shopping Project</title>
@@ -23,8 +23,11 @@ limitations under the License.
   <body onload="addLoginOrLogoutLinkToNavigation();">
     <%@include file="/WEB-INF/navigation.jsp" %>
       <div class="homepage">
-        <h1>Shop</h1>
-        <p>Welcome to the Shop, search your laptop to get started</p>
+          <div class="welcome-text">
+            <h1><strong>Laptop Shop</strong></h1>
+            <p>Welcome to the Shop, use our search filter  and compare reviews to find the best laptop for you</p>
+          </div>
+
         <form id="laptop-form"  >
           <div class="options">
             <select name="brand" id="brand">
@@ -50,10 +53,13 @@ limitations under the License.
               <option value="Silver">Silver</option>
             </select>
           </div>
-          <input name="description" id="description" type="search" placeholder = "Search for an item" />
-          <button onclick="fetchLaptops();return false;"> Submit</button>
-        </form>
-      <p>
+          <input name="description" id="description" type="search" placeholder = "Search for a laptop"/>
+            <div class="button" style="vertical-align:middle">
+              
+              <button onclick="fetchLaptops();return false;"><span>Submit</span></button>
+            </div>
+          </form>
+
         <table id="laptop-container" align="center" style = "width:90%" >
         </table>
       </p>

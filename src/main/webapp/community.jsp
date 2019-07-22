@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Community Page</title>
+    <title>Shopper Reviews</title>
     <link rel="stylesheet" href="/css/main.css">
     <script src="/js/ui-builder.js"></script>
 
@@ -29,11 +29,13 @@
        */
       function buildUserListItem(user){
         const userLink = document.createElement('a');
-        userLink.setAttribute('href', '/user-page.html?user=' + user);
+        userLink.setAttribute('href', '/user-page.jsp?user=' + user);
         userLink.appendChild(document.createTextNode(user));
-        const userListItem = document.createElement('li');
+        const userListItem = document.createElement('th');
         userListItem.appendChild(userLink);
-        return userListItem;
+        const userDiv = document.createElement('tr');
+        userDiv.appendChild(userListItem);
+        return userDiv;
       }
 
       /** Fetches data and populates the UI of the page. */
@@ -44,13 +46,13 @@
                 .then((loginStatus) => {
                   if (loginStatus.isLoggedIn) {
                     navigationElement.appendChild(createListItem(createLink(
-                        '/user-page.html?user=' + loginStatus.username, 'Your Page')));
+                        '/user-page.html?user=' + loginStatus.username, 'Shopper Page')));
 
                     navigationElement.appendChild(
                         createListItem(createLink('/logout', 'Logout')));
                   } else {
                     navigationElement.appendChild(
-                        createListItem(createLink('/login', 'Your Page')));
+                        createListItem(createLink('/login', 'Shopper Page')));
                     navigationElement.appendChild(
                         createListItem(createLink('/logout', 'Logout')));
                   }
@@ -61,11 +63,12 @@
   </head>
   <body onload="buildUI()">
     <%@include file="/WEB-INF/navigation.jsp" %>
-    <div id="content">
-      <h1>Community Page</h1>
-      <p>Here is a list of every user who has posted a message:</p>
-      <hr/>
-      <ul id="list">Loading...</ul>
+    <div class="community" id="content">
+      <h1>Shopper Reviews</h1>
+      <p>Here is a list of every user who has posted a review. Click on a user email to see their history of reviews: </p>
+      <hr class="type_3">
+      <table id="list" align="left" >
+      </table>
     </div>
   </body>
 </html>
