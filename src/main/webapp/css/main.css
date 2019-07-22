@@ -292,6 +292,9 @@ select:focus {
 ::selection {
   background: #ff589e;
   color: #fff;
+  background-repeat: no-repeat;
+  padding-bottom: 30px;
+  color: #E351A0;
 }
 
 ::-moz-selection {
