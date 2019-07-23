@@ -20,10 +20,10 @@
         createMarkerForEdit(event.latLng.lat(), event.latLng.lng());
       });
       fetchMarkers();
-    addLandmark(map, 40.807048, -73.961038, 'Eleanor', 'Eleanor is currently in NYC') 
-      addLandmark(map, 33.063655, -96.771746, 'Antara', 'Antara is currently in Dallas') 
-      addLandmark(map, 42.026411, -93.643472, 'Kamsi', 'Kamsi is in Iowa');
-    addLandmark(map, 37.422200, -122.083682, 'Kevin', 'Kevin is working in Mountain View')
+    addLandmark(map, 40.807048, -73.961038, 'Best Buy', 'Best Buy is a chain retailer with a large array of brand-name electronics') 
+      addLandmark(map, 33.063655, -96.771746, 'Fry&apos;s Electronics', 'Fry&apos;s Electronics has computer hardware and software products') 
+      addLandmark(map, 42.026411, -93.643472, 'Ivan Electronics', 'Ivan Electronics sells high performance computers');
+    addLandmark(map, 37.422200, -122.083682, 'Apple Palo Alto', 'Apple retail store selling Macbooks')
     }
     
     /** Fetches markers from the backend and adds them to the map. */
